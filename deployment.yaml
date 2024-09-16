@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: devsecops-nodejs-app
+  name: node-app
   labels:
-    app: devsecops-nodejs-app
+    app: node-app
 spec:
   replicas: 3  # We will run 3 instances (pods) of our app
   selector:
     matchLabels:
-      app: devsecops-nodejs-app
+      app: node-app
   template:
     metadata:
       labels:
-        app: devsecops-nodejs-app
+        app: node-app
     spec:
       containers:
-      - name: devsecops-nodejs-container
-        image: amonkincloud/devsecops-nodejs-app:latest  # Use your DockerHub repo
+      - name: node-app
+        image: amonkincloud/node-app:latest  # Use your DockerHub repo
         ports:
         - containerPort: 3000
         
@@ -24,10 +24,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: devsecops-nodejs-service
+  name: node-app
 spec:
   selector:
-    app: devsecops-nodejs-app
+    app: node-app
   ports:
   - protocol: TCP
     port: 80  # Expose the service on port 80
